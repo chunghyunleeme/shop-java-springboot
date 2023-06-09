@@ -1,9 +1,9 @@
-# [29CM 23 SS 공채] 백엔드 과제 (Java_Spring)
-29CM의 상품 주문 프로그램
+# 상품 주문 프로그램
+콘솔로 실행되는 상품 주문 프로그램입니다.
 
 
 ## 🖥️ 프로젝트 소개
-Spring Boot + Spring Data JPA로 구현한 29CM의 상품 주문 프로그램입니다.
+Spring Boot + Spring Data JPA로 구현한 상품 주문 프로그램입니다.
 
 
 ## 🧑‍💻 개발 기간
