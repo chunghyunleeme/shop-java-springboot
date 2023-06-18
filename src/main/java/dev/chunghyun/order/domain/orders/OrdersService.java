@@ -29,7 +29,6 @@ public class OrdersService {
         return order.getId();
     }
 
-    @Transactional
     private OrderItems createOrderItems(OrdersRequestDto ordersRequestDto) {
         Items items = itemsService.getItemByItemNumber(ordersRequestDto.getItemNumber());
 
