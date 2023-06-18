@@ -23,7 +23,6 @@ public class ItemsDataLoader {
     }
 
     private void createInitialItemsList() throws IOException {
-        System.out.println("path::"+new File("").getAbsoluteFile());
         try (CSVReader csvReader = new CSVReader(new FileReader("_items.csv"))) {
             List<String[]> csvLines = csvReader.readAll();
             int i = 0;
