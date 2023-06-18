@@ -12,9 +12,4 @@ public interface ItemStocksRepository extends JpaRepository<ItemStocks, Long> {
     @Lock(LockModeType.PESSIMISTIC_WRITE)
     @Query("SELECT is FROM ItemStocks is WHERE is.id = :id")
     Optional<ItemStocks> findByIdForUpdate(@Param("id") Long id);
-
-    //단방향 테스트
-//    @Lock(LockModeType.PESSIMISTIC_WRITE)
-//    @Query("SELECT is FROM ItemStocks is WHERE is.ITEMS_ID = :id")
-//    Optional<ItemStocks> findByItemsIdForUpdate(@Param("id") Long id);
 }
