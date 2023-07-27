@@ -1,14 +1,14 @@
-package dev.chunghyun.order;
+package dev.chunghyun.shop;
 
-import dev.chunghyun.order.domain.items.ItemsService;
-import dev.chunghyun.order.domain.items.dto.ItemsResponseDto;
-import dev.chunghyun.order.domain.orders.OrderItems;
-import dev.chunghyun.order.domain.orders.OrdersService;
-import dev.chunghyun.order.domain.orders.dto.OrdersRequestDto;
-import dev.chunghyun.order.domain.orders.dto.OrdersRequestListDto;
-import dev.chunghyun.order.domain.orders.dto.OrdersResponseDto;
-import dev.chunghyun.order.exception.SoldOutException;
-import dev.chunghyun.order.loader.ItemsDataLoader;
+import dev.chunghyun.shop.domain.items.ItemsService;
+import dev.chunghyun.shop.domain.items.dto.ItemsResponseDto;
+import dev.chunghyun.shop.domain.orders.OrderItems;
+import dev.chunghyun.shop.domain.orders.OrdersService;
+import dev.chunghyun.shop.domain.orders.dto.OrdersRequestDto;
+import dev.chunghyun.shop.domain.orders.dto.OrdersRequestListDto;
+import dev.chunghyun.shop.domain.orders.dto.OrdersResponseDto;
+import dev.chunghyun.shop.exception.SoldOutException;
+import dev.chunghyun.shop.loader.ItemsDataLoader;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import org.springframework.boot.CommandLineRunner;

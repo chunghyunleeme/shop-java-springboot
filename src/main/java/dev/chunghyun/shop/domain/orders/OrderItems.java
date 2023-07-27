@@ -1,11 +1,11 @@
-package dev.chunghyun.order.domain.orders;
+package dev.chunghyun.shop.domain.orders;
 
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import dev.chunghyun.order.domain.BaseTimeEntity;
-import dev.chunghyun.order.domain.items.Items;
+import dev.chunghyun.shop.domain.BaseTimeEntity;
+import dev.chunghyun.shop.domain.items.Items;
 
 import java.util.Objects;
 

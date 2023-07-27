@@ -1,4 +1,4 @@
-package dev.chunghyun.order.domain.items;
+package dev.chunghyun.shop.domain.items;
 
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;

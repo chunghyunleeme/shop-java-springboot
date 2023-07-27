@@ -1,16 +1,16 @@
-package dev.chunghyun.order.domain.orders;
+package dev.chunghyun.shop.domain.orders;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
-import dev.chunghyun.order.domain.items.ItemStocks;
-import dev.chunghyun.order.domain.items.Items;
-import dev.chunghyun.order.domain.items.ItemsService;
-import dev.chunghyun.order.domain.orders.dto.OrdersResponseDto;
-import dev.chunghyun.order.domain.orders.dto.OrdersRequestDto;
-import dev.chunghyun.order.domain.orders.dto.OrdersRequestListDto;
+import dev.chunghyun.shop.domain.items.ItemStocks;
+import dev.chunghyun.shop.domain.items.Items;
+import dev.chunghyun.shop.domain.items.ItemsService;
+import dev.chunghyun.shop.domain.orders.dto.OrdersResponseDto;
+import dev.chunghyun.shop.domain.orders.dto.OrdersRequestDto;
+import dev.chunghyun.shop.domain.orders.dto.OrdersRequestListDto;
 
 @RequiredArgsConstructor
 @Service

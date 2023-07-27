@@ -1,14 +1,13 @@
-package dev.chunghyun.order.loader;
+package dev.chunghyun.shop.loader;
 
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
 import lombok.*;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
-import dev.chunghyun.order.domain.items.ItemsService;
-import dev.chunghyun.order.domain.items.dto.ItemsSaveRequestDto;
+import dev.chunghyun.shop.domain.items.ItemsService;
+import dev.chunghyun.shop.domain.items.dto.ItemsSaveRequestDto;
 
 @RequiredArgsConstructor
 public class ItemsDataLoader {

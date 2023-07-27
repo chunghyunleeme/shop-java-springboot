@@ -1,7 +1,7 @@
-package dev.chunghyun.order.domain.items;
+package dev.chunghyun.shop.domain.items;
 
 import jakarta.persistence.*;
-import dev.chunghyun.order.domain.BaseTimeEntity;
+import dev.chunghyun.shop.domain.BaseTimeEntity;
 import lombok.*;
 
 @Getter

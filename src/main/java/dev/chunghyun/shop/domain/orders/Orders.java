@@ -1,10 +1,10 @@
-package dev.chunghyun.order.domain.orders;
+package dev.chunghyun.shop.domain.orders;
 
 import jakarta.persistence.*;
 import lombok.Getter;
 import java.util.ArrayList;
 import java.util.List;
-import dev.chunghyun.order.domain.BaseTimeEntity;
+import dev.chunghyun.shop.domain.BaseTimeEntity;
 
 @Getter
 @Entity

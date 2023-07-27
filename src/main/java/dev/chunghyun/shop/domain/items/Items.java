@@ -1,6 +1,6 @@
-package dev.chunghyun.order.domain.items;
+package dev.chunghyun.shop.domain.items;
 
-import dev.chunghyun.order.domain.BaseTimeEntity;
+import dev.chunghyun.shop.domain.BaseTimeEntity;
 import jakarta.persistence.*;
 import lombok.*;
 

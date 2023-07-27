@@ -1,13 +1,12 @@
-package dev.chunghyun.order.domain.items;
+package dev.chunghyun.shop.domain.items;
 
-import dev.chunghyun.order.domain.items.dto.ItemsResponseDto;
-import dev.chunghyun.order.domain.items.dto.ItemsSaveRequestDto;
+import dev.chunghyun.shop.domain.items.dto.ItemsResponseDto;
+import dev.chunghyun.shop.domain.items.dto.ItemsSaveRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor

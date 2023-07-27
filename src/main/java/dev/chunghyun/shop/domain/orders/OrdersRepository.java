@@ -1,4 +1,4 @@
-package dev.chunghyun.order.domain.orders;
+package dev.chunghyun.shop.domain.orders;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

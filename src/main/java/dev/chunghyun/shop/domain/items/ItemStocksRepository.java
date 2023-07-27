@@ -1,4 +1,4 @@
-package dev.chunghyun.order.domain.items;
+package dev.chunghyun.shop.domain.items;
 
 import jakarta.persistence.LockModeType;
 import org.springframework.data.jpa.repository.JpaRepository;

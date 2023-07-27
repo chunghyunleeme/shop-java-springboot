@@ -1,4 +1,4 @@
-package dev.chunghyun.order.exception;
+package dev.chunghyun.shop.exception;
 
 public class SoldOutException extends RuntimeException {
     public SoldOutException() {

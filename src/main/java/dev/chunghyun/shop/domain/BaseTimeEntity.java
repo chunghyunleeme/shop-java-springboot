@@ -1,4 +1,4 @@
-package dev.chunghyun.order.domain;
+package dev.chunghyun.shop.domain;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import jakarta.persistence.EntityListeners;

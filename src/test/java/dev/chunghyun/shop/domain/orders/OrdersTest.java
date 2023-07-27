@@ -1,11 +1,11 @@
-package dev.chunghyun.order.domain.orders;
+package dev.chunghyun.shop.domain.orders;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import java.util.List;
 import java.util.ArrayList;
-import dev.chunghyun.order.domain.items.ItemStocks;
-import dev.chunghyun.order.domain.items.Items;
+import dev.chunghyun.shop.domain.items.ItemStocks;
+import dev.chunghyun.shop.domain.items.Items;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class OrdersTest {
