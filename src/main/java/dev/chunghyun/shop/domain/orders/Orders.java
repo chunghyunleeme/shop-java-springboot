@@ -1,6 +1,7 @@
 package dev.chunghyun.shop.domain.orders;
 
 import dev.chunghyun.shop.domain.delivery.Delivery;
+import dev.chunghyun.shop.domain.member.Member;
 import jakarta.persistence.*;
 import lombok.Getter;
 import java.util.ArrayList;
@@ -13,6 +14,9 @@ public class Orders extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @ManyToOne
+    @JoinColumn(name = "MEMBER_ID")
+    private Member member;
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
     @OneToMany(mappedBy = "orders", cascade = CascadeType.ALL)
