@@ -1,5 +1,6 @@
 package dev.chunghyun.shop.domain.orders;
 
+import dev.chunghyun.shop.domain.delivery.Delivery;
 import jakarta.persistence.*;
 import lombok.Getter;
 import java.util.ArrayList;
@@ -17,6 +18,9 @@ public class Orders extends BaseTimeEntity {
     @OneToMany(mappedBy = "orders", cascade = CascadeType.ALL)
     private final List<OrderItems> orderItemsList = new ArrayList<>();
     private int shippingFee;
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, orphanRemoval = true)
+    @JoinColumn(name = "DELIVERY_ID")
+    private Delivery delivery;
 
     public int getOrderAmount() {
         int orderAmount = 0;
