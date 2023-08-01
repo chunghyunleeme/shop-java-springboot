@@ -27,7 +27,7 @@ public class ItemsDataLoader {
             int i = 0;
             for (String[] nextLine : csvLines) {
                 if(i != 0) {// 첫 줄 제외
-                    processCSVLine(nextLine);
+//                    processCSVLine(nextLine);
                 }
                 ++i;
             }
@@ -36,23 +36,23 @@ public class ItemsDataLoader {
         }
     }
 
-    private void processCSVLine(String[] csvLine) {
-        try {
-            int itemNumber = Integer.parseInt(csvLine[0]);
-            String name = csvLine[1];
-            int price = Integer.parseInt(csvLine[2]);
-            int stockQuantity = Integer.parseInt(csvLine[3]);
-
-            ItemsSaveRequestDto itemSaveRequestDto = ItemsSaveRequestDto.builder()
-                    .itemNumber(itemNumber)
-                    .name(name)
-                    .stockQuantity(stockQuantity)
-                    .price(price)
-                    .build();
-
-            itemService.saveItems(itemSaveRequestDto);
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
-        }
-    }
+//    private void processCSVLine(String[] csvLine) {
+//        try {
+//            int itemNumber = Integer.parseInt(csvLine[0]);
+//            String name = csvLine[1];
+//            int price = Integer.parseInt(csvLine[2]);
+//            int stockQuantity = Integer.parseInt(csvLine[3]);
+//
+//            ItemsSaveRequestDto itemSaveRequestDto = ItemsSaveRequestDto.builder()
+//                    .itemNumber(itemNumber)
+//                    .name(name)
+//                    .stockQuantity(stockQuantity)
+//                    .price(price)
+//                    .build();
+//
+//            itemService.saveItems(itemSaveRequestDto);
+//        } catch (NumberFormatException e) {
+//            e.printStackTrace();
+//        }
+//    }
 }

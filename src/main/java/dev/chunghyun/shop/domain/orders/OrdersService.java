@@ -18,25 +18,25 @@ public class OrdersService {
     private final OrdersRepository orderRepository;
     private final ItemsService itemsService;
 
-    @Transactional
-    public Long order(OrdersRequestListDto ordersRequestListDto) {
-        List<OrderItems> orderItemsList = ordersRequestListDto.getOrdersList().stream()
-                .map(this::createOrderItems)
-                .toList();
+//    @Transactional
+//    public Long order(OrdersRequestListDto ordersRequestListDto) {
+//        List<OrderItems> orderItemsList = ordersRequestListDto.getOrdersList().stream()
+//                .map(this::createOrderItems)
+//                .toList();
+//
+//        Orders order = Orders.createOrder(orderItemsList);
+//        orderRepository.save(order);
+//        return order.getId();
+//    }
 
-        Orders order = Orders.createOrder(orderItemsList);
-        orderRepository.save(order);
-        return order.getId();
-    }
-
-    private OrderItems createOrderItems(OrdersRequestDto ordersRequestDto) {
-        Items items = itemsService.getItemByItemNumber(ordersRequestDto.getItemNumber());
-
-        ItemStocks itemStocks = itemsService.getItemStocksForOrder(items.getItemStocks().getId());
-
-        itemStocks.removeStock(ordersRequestDto.getOrderQuantity());
-        return OrderItems.createOrderItem(items, ordersRequestDto.getOrderQuantity());
-    }
+//    private OrderItems createOrderItems(OrdersRequestDto ordersRequestDto) {
+//        Items items = itemsService.getItemByItemNumber(ordersRequestDto.getItemNumber());
+//
+//        ItemStocks itemStocks = itemsService.getItemStocksForOrder(items.getItemStocks().getId());
+//
+//        itemStocks.removeStock(ordersRequestDto.getOrderQuantity());
+//        return OrderItems.createOrderItem(items, ordersRequestDto.getOrderQuantity());
+//    }
 
     public List<OrdersResponseDto> getAllOrdersList() {
         return orderRepository.findOrdersDesc().stream()

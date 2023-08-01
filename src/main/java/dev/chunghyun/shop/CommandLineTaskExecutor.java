@@ -39,34 +39,34 @@ public class CommandLineTaskExecutor implements CommandLineRunner {
                 CommandType commandType = getCommandType(input);
                 switch (commandType) {
                     case ORDER:
-                        displayItemList();
-                        while (true) {
-                            try {
-                                System.out.print("상품번호:");
-                                String itemNumberInput = scanner.nextLine();
-                                // 상품번호 space 입력하면 이전것까지 Order 생성
-                                if (itemNumberInput.trim().isEmpty()) {
-                                    orderService.order(orderRequestListDto);
-                                    orderRequestListDto.getOrdersList().clear();
-                                }
-                                System.out.print("수량:");
-                                String orderQuantityInput = scanner.nextLine();
-                                // 수량 space 입력하면 order 조회
-                                if (orderQuantityInput.trim().isEmpty()) {
-                                    displayOrderList();
-                                    break;
-                                }
-                                int itemNumber = Integer.parseInt(itemNumberInput);
-                                int orderQuantity = Integer.parseInt(orderQuantityInput);
-                                orderRequestListDto.addOrderRequestDto(OrdersRequestDto.builder()
-                                        .itemNumber(itemNumber)
-                                        .orderQuantity(orderQuantity)
-                                        .build());
-                            }catch (SoldOutException e) {
-                                System.out.println(e.getMessage());
-                                break;
-                            }
-                        }
+//                        displayItemList();
+//                        while (true) {
+//                            try {
+//                                System.out.print("상품번호:");
+//                                String itemNumberInput = scanner.nextLine();
+//                                // 상품번호 space 입력하면 이전것까지 Order 생성
+//                                if (itemNumberInput.trim().isEmpty()) {
+//                                    orderService.order(orderRequestListDto);
+//                                    orderRequestListDto.getOrdersList().clear();
+//                                }
+//                                System.out.print("수량:");
+//                                String orderQuantityInput = scanner.nextLine();
+//                                // 수량 space 입력하면 order 조회
+//                                if (orderQuantityInput.trim().isEmpty()) {
+//                                    displayOrderList();
+//                                    break;
+//                                }
+//                                int itemNumber = Integer.parseInt(itemNumberInput);
+//                                int orderQuantity = Integer.parseInt(orderQuantityInput);
+//                                orderRequestListDto.addOrderRequestDto(OrdersRequestDto.builder()
+//                                        .itemNumber(itemNumber)
+//                                        .orderQuantity(orderQuantity)
+//                                        .build());
+//                            }catch (SoldOutException e) {
+//                                System.out.println(e.getMessage());
+//                                break;
+//                            }
+//                        }
                         break;
                     case QUIT:
                         System.out.println("고객님의 주문 감사합니다.");
@@ -89,19 +89,19 @@ public class CommandLineTaskExecutor implements CommandLineRunner {
         return CommandType.INVALID;
     }
 
-    private void displayItemList() {
-        try {
-            List<ItemsResponseDto> itemList = itemService.getAllItemList();
-            StringBuilder sb = new StringBuilder();
-            sb.append(String.format("%-10s%-50s%-10s%-10s\n", "상품번호", "상품명", "판매가격", "재고수"));
-            for (ItemsResponseDto item : itemList) {
-                sb.append(String.format("%-10s%-50s%-10s%-10s\n", item.getItemNumber(), item.getName(), item.getPrice(), item.getStockQuantity()));
-            }
-            System.out.println(sb.toString());
-        } catch (Exception e) {
-            System.out.println("Failed to display item list: " + e.getMessage());
-        }
-    }
+//    private void displayItemList() {
+//        try {
+//            List<ItemsResponseDto> itemList = itemService.getAllItemList();
+//            StringBuilder sb = new StringBuilder();
+//            sb.append(String.format("%-10s%-50s%-10s%-10s\n", "상품번호", "상품명", "판매가격", "재고수"));
+//            for (ItemsResponseDto item : itemList) {
+//                sb.append(String.format("%-10s%-50s%-10s%-10s\n", item.getItemNumber(), item.getName(), item.getPrice(), item.getStockQuantity()));
+//            }
+//            System.out.println(sb.toString());
+//        } catch (Exception e) {
+//            System.out.println("Failed to display item list: " + e.getMessage());
+//        }
+//    }
 
     private void displayOrderList() {
         try {

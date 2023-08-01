@@ -21,10 +21,10 @@ public class ItemsSaveRequestDto {
         this.stockQuantity = stockQuantity;
     }
 
-    public Items toEntity() {
-        return Items.builder()
-                .itemNumber(itemNumber)
-                .name(name)
-                .build();
-    }
+//    public Items toEntity() {
+//        return Items.builder()
+//                .itemNumber(itemNumber)
+//                .name(name)
+//                .build();
+//    }
 }

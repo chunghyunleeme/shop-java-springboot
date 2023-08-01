@@ -65,12 +65,12 @@ public class Orders extends BaseTimeEntity {
         return order;
     }
 
-    public void cancel() {
-        this.setStatus(OrderStatus.CANCEL);
-        for (OrderItems orderItems : orderItemsList) {
-            orderItems.cancel();
-        }
-    }
+//    public void cancel() {
+//        this.setStatus(OrderStatus.CANCEL);
+//        for (OrderItems orderItems : orderItemsList) {
+//            orderItems.cancel();
+//        }
+//    }
 
     public enum OrderStatus {
         ORDER,

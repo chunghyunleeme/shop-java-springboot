@@ -11,11 +11,11 @@ public class ItemsResponseDto {
     private int price;
     private int stockQuantity;
 
-    public ItemsResponseDto(Items entity) {
-        this.id = entity.getId();
-        this.itemNumber = entity.getItemNumber();
-        this.price = entity.getItemPrice();
-        this.name = entity.getName();
-        this.stockQuantity = entity.getStockQuantity();
-    }
+//    public ItemsResponseDto(Items entity) {
+//        this.id = entity.getId();
+//        this.itemNumber = entity.getItemNumber();
+//        this.price = entity.getItemPrice();
+//        this.name = entity.getName();
+//        this.stockQuantity = entity.getStockQuantity();
+//    }
 }

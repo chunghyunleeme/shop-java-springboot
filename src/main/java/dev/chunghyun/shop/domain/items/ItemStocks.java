@@ -27,12 +27,12 @@ public class ItemStocks extends BaseTimeEntity {
         this.items = items;
     }
 
-    public void removeStock(int orderQuantity) {
-        int restStock = this.stockQuantity - orderQuantity;
-        if(restStock < 0) {
-            throw new SoldOutException();
-        }
-        this.stockQuantity = restStock;
-        this.items.setStockQuantity(restStock);
-    }
+//    public void removeStock(int orderQuantity) {
+//        int restStock = this.stockQuantity - orderQuantity;
+//        if(restStock < 0) {
+//            throw new SoldOutException();
+//        }
+//        this.stockQuantity = restStock;
+//        this.items.setStockQuantity(restStock);
+//    }
 }

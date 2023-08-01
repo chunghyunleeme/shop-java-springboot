@@ -9,26 +9,28 @@ import java.util.List;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@DiscriminatorColumn(name = "DTYPE")
+@Inheritance(strategy = InheritanceType.JOINED)
 @Entity
-public class Items extends BaseTimeEntity {
+public abstract class Items extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private int itemNumber;
     private String name;
-    private int stockQuantity;
+//    private int stockQuantity;
     @OneToMany(mappedBy = "items", cascade = CascadeType.ALL)
     private final List<ItemPrices> itemPricesList = new ArrayList<>();
     @JoinColumn(name = "ITEM_STOCKS_ID")
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private ItemStocks itemStocks;
 
-    @Builder
-    public Items(int itemNumber, String name) {
-        this.itemNumber = itemNumber;
-        this.name = name;
-        this.name = name;
-    }
+//    @Builder
+//    public Items(int itemNumber, String name) {
+//        this.itemNumber = itemNumber;
+//        this.name = name;
+//        this.name = name;
+//    }
 
     public int getItemPrice() {
         if(this.itemPricesList.size() == 0) {
@@ -42,18 +44,18 @@ public class Items extends BaseTimeEntity {
         itemPrices.setItems(this);
     }
 
-    public void addStockQuantity(int quantity) {
-        this.stockQuantity += quantity;
-    }
+//    public void addStockQuantity(int quantity) {
+//        this.stockQuantity += quantity;
+//    }
+//
+//    public void setStockQuantity(int stockQuantity) {
+//        this.stockQuantity = stockQuantity;
+//    }
 
-    public void setStockQuantity(int stockQuantity) {
-        this.stockQuantity = stockQuantity;
-    }
-
-    public void setItemStocks(ItemStocks itemStocks) {
-        this.setStockQuantity(itemStocks.getStockQuantity());
-
-        this.itemStocks = itemStocks;
-        itemStocks.setItems(this);
-    }
+//    public void setItemStocks(ItemStocks itemStocks) {
+//        this.setStockQuantity(itemStocks.getStockQuantity());
+//
+//        this.itemStocks = itemStocks;
+//        itemStocks.setItems(this);
+//    }
 }

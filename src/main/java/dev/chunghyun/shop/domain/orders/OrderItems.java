@@ -44,9 +44,9 @@ public class OrderItems extends BaseTimeEntity {
                 .build();
     }
 
-    public void cancel() {
-        this.items.addStockQuantity(orderQuantity);
-    }
+//    public void cancel() {
+//        this.items.addStockQuantity(orderQuantity);
+//    }
 
     public int getTotalPrice() {
         return this.getOrderItemPrice() * this.getOrderQuantity();
