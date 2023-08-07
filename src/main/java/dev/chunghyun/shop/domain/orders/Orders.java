@@ -7,6 +7,7 @@ import lombok.Getter;
 import java.util.ArrayList;
 import java.util.List;
 import dev.chunghyun.shop.domain.BaseTimeEntity;
+import static jakarta.persistence.FetchType.*;
 
 @Getter
 @Entity
@@ -14,7 +15,7 @@ public class Orders extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToOne
+    @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
     @Enumerated(EnumType.STRING)

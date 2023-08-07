@@ -3,6 +3,7 @@ package dev.chunghyun.shop.domain.items;
 import jakarta.persistence.*;
 import dev.chunghyun.shop.domain.BaseTimeEntity;
 import lombok.*;
+import static jakarta.persistence.FetchType.*;
 
 @Getter
 @NoArgsConstructor
@@ -12,7 +13,7 @@ public class ItemPrices extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private int price;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "ITEMS_ID")
     private Items items;
 

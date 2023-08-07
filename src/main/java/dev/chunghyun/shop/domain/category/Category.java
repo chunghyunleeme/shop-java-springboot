@@ -2,8 +2,8 @@ package dev.chunghyun.shop.domain.category;
 
 import dev.chunghyun.shop.domain.BaseTimeEntity;
 import jakarta.persistence.*;
-
 import java.util.List;
+import static jakarta.persistence.FetchType.*;
 
 @Entity
 public class Category extends BaseTimeEntity {
@@ -11,7 +11,7 @@ public class Category extends BaseTimeEntity {
     private Long id;
     @Column(name = "name")
     private String name;
-    @ManyToOne
+    @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "PARENT_ID")
     private Category parent;
     @OneToMany(mappedBy = "parent")

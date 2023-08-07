@@ -6,6 +6,7 @@ import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import static jakarta.persistence.FetchType.*;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -22,7 +23,7 @@ public abstract class Items extends BaseTimeEntity {
     @OneToMany(mappedBy = "items", cascade = CascadeType.ALL)
     private final List<ItemPrices> itemPricesList = new ArrayList<>();
     @JoinColumn(name = "ITEM_STOCKS_ID")
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne(fetch = LAZY, cascade = CascadeType.ALL)
     private ItemStocks itemStocks;
 
 //    @Builder

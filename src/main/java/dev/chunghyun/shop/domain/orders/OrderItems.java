@@ -6,8 +6,8 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import dev.chunghyun.shop.domain.BaseTimeEntity;
 import dev.chunghyun.shop.domain.items.Items;
-
 import java.util.Objects;
+import static jakarta.persistence.FetchType.*;
 
 @Getter
 @RequiredArgsConstructor
@@ -16,7 +16,7 @@ public class OrderItems extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "ORDERS_ID")
     private Orders orders;
     @ManyToOne(fetch = FetchType.EAGER)
