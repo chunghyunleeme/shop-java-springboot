@@ -1,10 +1,8 @@
 package dev.chunghyun.shop.domain.member;
 
+import dev.chunghyun.shop.domain.Address;
 import dev.chunghyun.shop.domain.BaseTimeEntity;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.util.List;
 @Entity
@@ -14,11 +12,11 @@ public class Member extends BaseTimeEntity{
     private Long memberId;
     @Column(name = "name")
     private String name;
-    @Column(name = "city")
-    private String city;
-
-    @Column(name = "street")
-    private String street;
-    @Column(name = "zipcode")
-    private String zipcode;
+    @AttributeOverrides({
+            @AttributeOverride(name = "city", column = @Column(name = "HOME_CITY")),
+            @AttributeOverride(name = "street", column = @Column(name = "HOME_STREET")),
+            @AttributeOverride(name = "zipcode", column = @Column(name = "HOME_ZIPCODE"))
+    })
+    @Embedded
+    private Address homeAddress;
 }
