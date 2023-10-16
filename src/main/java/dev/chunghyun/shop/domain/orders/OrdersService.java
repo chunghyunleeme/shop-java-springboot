@@ -2,21 +2,18 @@ package dev.chunghyun.shop.domain.orders;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 import java.util.stream.Collectors;
-import dev.chunghyun.shop.domain.items.ItemStocks;
-import dev.chunghyun.shop.domain.items.Items;
-import dev.chunghyun.shop.domain.items.ItemsService;
+
+import dev.chunghyun.shop.domain.item.ItemService;
 import dev.chunghyun.shop.domain.orders.dto.OrdersResponseDto;
-import dev.chunghyun.shop.domain.orders.dto.OrdersRequestDto;
-import dev.chunghyun.shop.domain.orders.dto.OrdersRequestListDto;
 
 @RequiredArgsConstructor
 @Service
 public class OrdersService {
     private final OrdersRepository orderRepository;
-    private final ItemsService itemsService;
+    private final ItemService itemService;
 
 //    @Transactional
 //    public Long order(OrdersRequestListDto ordersRequestListDto) {

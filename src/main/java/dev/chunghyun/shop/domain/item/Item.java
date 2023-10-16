@@ -1,4 +1,4 @@
-package dev.chunghyun.shop.domain.items;
+package dev.chunghyun.shop.domain.item;
 
 import dev.chunghyun.shop.domain.BaseTimeEntity;
 import jakarta.persistence.*;
@@ -13,7 +13,7 @@ import static jakarta.persistence.FetchType.*;
 @DiscriminatorColumn(name = "DTYPE")
 @Inheritance(strategy = InheritanceType.JOINED)
 @Entity
-public abstract class Items extends BaseTimeEntity {
+public abstract class Item extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -21,10 +21,10 @@ public abstract class Items extends BaseTimeEntity {
     private String name;
 //    private int stockQuantity;
     @OneToMany(mappedBy = "items", cascade = CascadeType.ALL)
-    private final List<ItemPrices> itemPricesList = new ArrayList<>();
+    private final List<ItemPrice> itemPriceList = new ArrayList<>();
     @JoinColumn(name = "ITEM_STOCKS_ID")
     @OneToOne(fetch = LAZY, cascade = CascadeType.ALL)
-    private ItemStocks itemStocks;
+    private ItemStock itemStock;
 
 //    @Builder
 //    public Items(int itemNumber, String name) {
@@ -34,15 +34,15 @@ public abstract class Items extends BaseTimeEntity {
 //    }
 
     public int getItemPrice() {
-        if(this.itemPricesList.size() == 0) {
+        if(this.itemPriceList.size() == 0) {
             throw new IllegalArgumentException("price no setting");
         }
-        return this.itemPricesList.get(this.itemPricesList.size() - 1).getPrice();
+        return this.itemPriceList.get(this.itemPriceList.size() - 1).getPrice();
     }
 
-    public void addNewItemPrices(ItemPrices itemPrices) {
-        this.itemPricesList.add(itemPrices);
-        itemPrices.setItems(this);
+    public void addNewItemPrices(ItemPrice itemPrice) {
+        this.itemPriceList.add(itemPrice);
+        itemPrice.setItem(this);
     }
 
 //    public void addStockQuantity(int quantity) {

@@ -1,6 +1,5 @@
-package dev.chunghyun.shop.domain.items.dto;
+package dev.chunghyun.shop.domain.item.dto;
 
-import dev.chunghyun.shop.domain.items.Items;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

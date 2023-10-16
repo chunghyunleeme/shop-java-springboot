@@ -1,8 +1,8 @@
 package dev.chunghyun.shop.domain.orders;
 
-import dev.chunghyun.shop.domain.items.Items;
-import dev.chunghyun.shop.domain.items.ItemsService;
-import dev.chunghyun.shop.domain.items.dto.ItemsResponseDto;
+import dev.chunghyun.shop.domain.item.Item;
+import dev.chunghyun.shop.domain.item.ItemService;
+import dev.chunghyun.shop.domain.item.dto.ItemsResponseDto;
 import dev.chunghyun.shop.domain.orders.dto.OrdersRequestDto;
 import dev.chunghyun.shop.domain.orders.dto.OrdersRequestListDto;
 import dev.chunghyun.shop.domain.orders.dto.OrdersResponseDto;
@@ -27,11 +27,11 @@ public class OrdersServiceIntegrationTest {
     @Autowired
     OrdersService ordersService;
     @Autowired
-    ItemsService itemsService;
+    ItemService itemService;
 
     @BeforeEach
     public void beforeEach() {
-        ItemsDataLoader dataLoader = new ItemsDataLoader(itemsService);
+        ItemsDataLoader dataLoader = new ItemsDataLoader(itemService);
         dataLoader.loadInitialItemsData();
     }
 
@@ -40,7 +40,7 @@ public class OrdersServiceIntegrationTest {
         //Given
         AtomicInteger orderItemsSuccessCount = new AtomicInteger();
         AtomicInteger soldOutExceptionCount = new AtomicInteger();
-        ItemsResponseDto items = itemsService.getAllItemList().get(0);
+        ItemsResponseDto items = itemService.getAllItemList().get(0);
         int itemNumber = items.getItemNumber();
         int stockQuantity = items.getStockQuantity();
 
@@ -74,9 +74,9 @@ public class OrdersServiceIntegrationTest {
         assertThat(orderItemsSuccessCount.get()).isEqualTo(stockQuantity);
         assertThat(soldOutExceptionCount.get()).isEqualTo(numThreads - stockQuantity);
 
-        Items orderedItems = itemsService.getItemByItemNumberWithItemStocks(itemNumber);
-        assertThat(orderedItems.getStockQuantity()).isEqualTo(0);
-        assertThat(orderedItems.getItemStocks().getStockQuantity()).isEqualTo(0);
+        Item orderedItem = itemService.getItemByItemNumberWithItemStocks(itemNumber);
+        assertThat(orderedItem.getStockQuantity()).isEqualTo(0);
+        assertThat(orderedItem.getItemStock().getStockQuantity()).isEqualTo(0);
 
         List<OrdersResponseDto> orderList = ordersService.getAllOrdersList();
         assertThat(orderList.size()).isEqualTo(stockQuantity / orderQuantity);
