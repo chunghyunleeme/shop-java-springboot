@@ -1,11 +1,9 @@
 package dev.chunghyun.shop.domain.member;
 
-import dev.chunghyun.shop.domain.address.Address;
+import dev.chunghyun.shop.domain.Address;
 import dev.chunghyun.shop.domain.BaseTimeEntity;
-import dev.chunghyun.shop.domain.address.AddressEntity;
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
 import java.util.List;
 @Entity
 public class Member extends BaseTimeEntity{
@@ -14,7 +12,11 @@ public class Member extends BaseTimeEntity{
     private Long memberId;
     @Column(name = "name")
     private String name;
-    @JoinColumn(name = "MEMBER_ID")
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<AddressEntity> addressHistory = new ArrayList<>();
+    @AttributeOverrides({
+            @AttributeOverride(name = "city", column = @Column(name = "HOME_CITY")),
+            @AttributeOverride(name = "street", column = @Column(name = "HOME_STREET")),
+            @AttributeOverride(name = "zipcode", column = @Column(name = "HOME_ZIPCODE"))
+    })
+    @Embedded
+    private Address homeAddress;
 }

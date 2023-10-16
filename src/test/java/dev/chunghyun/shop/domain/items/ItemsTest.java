@@ -1,4 +1,4 @@
-package dev.chunghyun.shop.domain.item;
+package dev.chunghyun.shop.domain.items;
 
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -11,67 +11,67 @@ public class ItemsTest {
         String itemName = "테스트 상품";
 
         //When
-        Item item = Item.builder()
+        Items items = Items.builder()
                 .itemNumber(itemNumber)
                 .name(itemName)
                 .build();
 
         //Then
-        assertThat(item.getItemNumber()).isEqualTo(itemNumber);
-        assertThat(item.getName()).isEqualTo(itemName);
+        assertThat(items.getItemNumber()).isEqualTo(itemNumber);
+        assertThat(items.getName()).isEqualTo(itemName);
     }
 
     @Test
     public void 상품_가격_설정_테스트() {
         //Given
         int itemPrice = 1000;
-        ItemPrice itemPrices = ItemPrice.builder()
+        ItemPrices itemPrices = ItemPrices.builder()
                 .price(itemPrice)
                 .build();
 
-        Item item = new Item();
+        Items items = new Items();
 
         //When
-        item.addNewItemPrices(itemPrices);
+        items.addNewItemPrices(itemPrices);
 
         //Then
-        assertThat(item.getItemPriceList().size()).isEqualTo(1);
-        assertThat(item.getItemPriceList().get(0).getPrice()).isEqualTo(itemPrice);
-        assertThat(itemPrices.getItem()).isEqualTo(item);
+        assertThat(items.getItemPricesList().size()).isEqualTo(1);
+        assertThat(items.getItemPricesList().get(0).getPrice()).isEqualTo(itemPrice);
+        assertThat(itemPrices.getItems()).isEqualTo(items);
     }
 
     @Test
     public void 상품_현재_가격_조회_테스트() {
         //Given
         int itemPrice1 = 1000;
-        ItemPrice itemPrices1 = ItemPrice.builder()
+        ItemPrices itemPrices1 = ItemPrices.builder()
                 .price(itemPrice1)
                 .build();
 
         int itemPrice2 = 2000;
-        ItemPrice itemPrices2 = ItemPrice.builder()
+        ItemPrices itemPrices2 = ItemPrices.builder()
                 .price(itemPrice2)
                 .build();
 
-        Item item = new Item();
+        Items items = new Items();
 
         //When
-        item.addNewItemPrices(itemPrices1);
-        item.addNewItemPrices(itemPrices2);
+        items.addNewItemPrices(itemPrices1);
+        items.addNewItemPrices(itemPrices2);
 
         //Then
-        assertThat(item.getItemPrice()).isEqualTo(itemPrices2.getPrice());
+        assertThat(items.getItemPrice()).isEqualTo(itemPrices2.getPrice());
     }
 
     @Test
     public void 가격_설정안한_상품_가격조회_예외처리_테스트() {
         //Given
-        Item item = new Item();
+        Items items = new Items();
         int illegalArgumentExceptionCount = 0;
 
         //When
         try {
-            item.getItemPrice();
+            items.getItemPrice();
         } catch (IllegalArgumentException e) {
             ++illegalArgumentExceptionCount;
         }
@@ -84,17 +84,17 @@ public class ItemsTest {
     public void 상품_재고_설정_테스트() {
         //Given
         int stockQuantity = 10;
-        Item item = new Item();
-        ItemStock itemStock = ItemStock.builder()
+        Items items = new Items();
+        ItemStocks itemStocks = ItemStocks.builder()
                 .stockQuantity(stockQuantity)
                 .build();
 
         //When
-        item.setItemStocks(itemStock);
+        items.setItemStocks(itemStocks);
 
         //Then
-        assertThat(item.getStockQuantity()).isEqualTo(stockQuantity);
-        assertThat(item.getItemStock().getStockQuantity()).isEqualTo(stockQuantity);
-        assertThat(item.getItemStock()).isEqualTo(itemStock);
+        assertThat(items.getStockQuantity()).isEqualTo(stockQuantity);
+        assertThat(items.getItemStocks().getStockQuantity()).isEqualTo(stockQuantity);
+        assertThat(items.getItemStocks()).isEqualTo(itemStocks);
     }
 }

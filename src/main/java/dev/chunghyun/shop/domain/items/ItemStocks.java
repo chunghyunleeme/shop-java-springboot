@@ -1,5 +1,6 @@
-package dev.chunghyun.shop.domain.item;
+package dev.chunghyun.shop.domain.items;
 
+import dev.chunghyun.shop.exception.SoldOutException;
 import jakarta.persistence.*;
 import dev.chunghyun.shop.domain.BaseTimeEntity;
 import lombok.Builder;
@@ -9,21 +10,21 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @Entity
-public class ItemStock extends BaseTimeEntity {
+public class ItemStocks extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private int stockQuantity;
     @OneToOne(mappedBy = "itemStocks")
-    private Item item;
+    private Items items;
 
     @Builder
-    public ItemStock(int stockQuantity) {
+    public ItemStocks(int stockQuantity) {
         this.stockQuantity = stockQuantity;
     }
 
-    public void setItem(Item item) {
-        this.item = item;
+    public void setItems(Items items) {
+        this.items = items;
     }
 
 //    public void removeStock(int orderQuantity) {

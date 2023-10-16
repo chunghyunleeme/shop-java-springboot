@@ -4,13 +4,13 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import java.util.List;
 import java.util.ArrayList;
-import dev.chunghyun.shop.domain.item.ItemStock;
-import dev.chunghyun.shop.domain.item.Item;
+import dev.chunghyun.shop.domain.items.ItemStocks;
+import dev.chunghyun.shop.domain.items.Items;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class OrdersTest {
-    private Item item1;
-    private Item item2;
+    private Items items1;
+    private Items items2;
     private OrderItems orderItems1;
     private OrderItems orderItems2;
 
@@ -26,24 +26,24 @@ public class OrdersTest {
         int orderItemPrice1 = 1000;
         int orderItemPrice2 = 3000;
 
-        item1 = Item.builder()
+        items1 = Items.builder()
                 .itemNumber(itemNumber1)
                 .name(itemName1)
                 .build();
 
-        item2 = Item.builder()
+        items2 = Items.builder()
                 .itemNumber(itemNumber2)
                 .name(itemName2)
                 .build();
 
         orderItems1 = OrderItems.builder()
-                .items(item1)
+                .items(items1)
                 .orderQuantity(orderQuantity1)
                 .orderItemPrice(orderItemPrice1)
                 .build();
 
         orderItems2 = OrderItems.builder()
-                .items(item2)
+                .items(items2)
                 .orderQuantity(orderQuantity2)
                 .orderItemPrice(orderItemPrice2)
                 .build();
@@ -53,13 +53,13 @@ public class OrdersTest {
     public void 주문_상품_리스트_추가_테스트() {
         //Given
         OrderItems orderItems1 = OrderItems.builder()
-                .items(item1)
+                .items(items1)
                 .orderQuantity(1)
                 .orderItemPrice(1000)
                 .build();
 
         OrderItems orderItems2 = OrderItems.builder()
-                .items(item2)
+                .items(items2)
                 .orderQuantity(1)
                 .orderItemPrice(1000)
                 .build();
@@ -82,13 +82,13 @@ public class OrdersTest {
         int orderItemPrice2 = 3000;
 
         OrderItems orderItems1 = OrderItems.builder()
-                .items(item1)
+                .items(items1)
                 .orderQuantity(orderQuantity1)
                 .orderItemPrice(orderItemPrice1)
                 .build();
 
         OrderItems orderItems2 = OrderItems.builder()
-                .items(item2)
+                .items(items2)
                 .orderQuantity(orderQuantity2)
                 .orderItemPrice(orderItemPrice2)
                 .build();
@@ -108,7 +108,7 @@ public class OrdersTest {
     public void 주문상품_무료배송비_이하일때_배송비_세팅_테스트() {
         //Given
         orderItems1 = OrderItems.builder()
-                .items(item1)
+                .items(items1)
                 .orderQuantity(1)
                 .orderItemPrice(Orders.FREE_SHIPPING_AMOUNT / 2)
                 .build();
@@ -127,7 +127,7 @@ public class OrdersTest {
     public void 주문상품_무료배송비_초과일때_배송비_세팅_테스트() {
         //Given
         orderItems1 = OrderItems.builder()
-                .items(item1)
+                .items(items1)
                 .orderQuantity(2)
                 .orderItemPrice(Orders.FREE_SHIPPING_AMOUNT)
                 .build();
@@ -146,7 +146,7 @@ public class OrdersTest {
         //Given
         int orderItemPrice = Orders.FREE_SHIPPING_AMOUNT / 2;
         orderItems1 = OrderItems.builder()
-                .items(item1)
+                .items(items1)
                 .orderQuantity(1)
                 .orderItemPrice(orderItemPrice)
                 .build();
@@ -183,15 +183,15 @@ public class OrdersTest {
         //Given
         int stockQuantity1 = 10;
         int stockQuantity2 = 10;
-        ItemStock itemStock1 = ItemStock.builder()
+        ItemStocks itemStocks1 = ItemStocks.builder()
                         .stockQuantity(stockQuantity1)
                         .build();
-        item1.setItemStocks(itemStock1);
+        items1.setItemStocks(itemStocks1);
 
-        ItemStock itemStock2 = ItemStock.builder()
+        ItemStocks itemStocks2 = ItemStocks.builder()
                 .stockQuantity(stockQuantity2)
                 .build();
-        item2.setItemStocks(itemStock2);
+        items2.setItemStocks(itemStocks2);
 
         List<OrderItems> orderItemsList = new ArrayList<>();
         orderItemsList.add(orderItems1);
@@ -203,8 +203,8 @@ public class OrdersTest {
         orders.cancel();
 
         //Then
-        assertThat(item1.getStockQuantity()).isEqualTo(stockQuantity1 + orderItems1.getOrderQuantity());
-        assertThat(item2.getStockQuantity()).isEqualTo(stockQuantity2 + orderItems2.getOrderQuantity());
+        assertThat(items1.getStockQuantity()).isEqualTo(stockQuantity1 + orderItems1.getOrderQuantity());
+        assertThat(items2.getStockQuantity()).isEqualTo(stockQuantity2 + orderItems2.getOrderQuantity());
         assertThat(orders.getStatus()).isEqualTo(Orders.OrderStatus.CANCEL);
     }
 }

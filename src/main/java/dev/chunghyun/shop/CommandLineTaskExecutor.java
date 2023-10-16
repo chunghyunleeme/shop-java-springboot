@@ -1,22 +1,26 @@
 package dev.chunghyun.shop;
 
-import dev.chunghyun.shop.domain.item.ItemService;
-import dev.chunghyun.shop.domain.orders.OrderItem;
+import dev.chunghyun.shop.domain.items.ItemsService;
+import dev.chunghyun.shop.domain.items.dto.ItemsResponseDto;
+import dev.chunghyun.shop.domain.orders.OrderItems;
 import dev.chunghyun.shop.domain.orders.OrdersService;
+import dev.chunghyun.shop.domain.orders.dto.OrdersRequestDto;
 import dev.chunghyun.shop.domain.orders.dto.OrdersRequestListDto;
 import dev.chunghyun.shop.domain.orders.dto.OrdersResponseDto;
+import dev.chunghyun.shop.exception.SoldOutException;
 import dev.chunghyun.shop.loader.ItemsDataLoader;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import org.springframework.boot.CommandLineRunner;
 import lombok.RequiredArgsConstructor;
 
+import java.util.List;
 import java.util.Scanner;
 @Profile("!test")
 @RequiredArgsConstructor
 @Component
 public class CommandLineTaskExecutor implements CommandLineRunner {
-    private final ItemService itemService;
+    private final ItemsService itemService;
     private final OrdersService orderService;
 
     @Override
@@ -103,8 +107,8 @@ public class CommandLineTaskExecutor implements CommandLineRunner {
         try {
             OrdersResponseDto orders = orderService.getLastOrders();
             System.out.println("---------------------------------");
-            for (OrderItem orderItem : orders.getOrderItemsList()) {
-                System.out.printf("%s - %d개%n", orderItem.getItem().getName(), orderItem.getOrderQuantity());
+            for (OrderItems orderItems : orders.getOrderItemsList()) {
+                System.out.printf("%s - %d개%n", orderItems.getItems().getName(), orderItems.getOrderQuantity());
             }
             System.out.println("---------------------------------");
             System.out.println("주문금액: " + String.format("%,d", orders.getOrderAmount()));

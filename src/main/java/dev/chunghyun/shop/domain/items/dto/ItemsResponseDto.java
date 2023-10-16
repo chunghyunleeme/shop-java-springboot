@@ -1,5 +1,6 @@
-package dev.chunghyun.shop.domain.item.dto;
+package dev.chunghyun.shop.domain.items.dto;
 
+import dev.chunghyun.shop.domain.items.Items;
 import lombok.Getter;
 
 @Getter

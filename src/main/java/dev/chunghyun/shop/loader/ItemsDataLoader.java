@@ -6,11 +6,12 @@ import java.util.List;
 import lombok.*;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
-import dev.chunghyun.shop.domain.item.ItemService;
+import dev.chunghyun.shop.domain.items.ItemsService;
+import dev.chunghyun.shop.domain.items.dto.ItemsSaveRequestDto;
 
 @RequiredArgsConstructor
 public class ItemsDataLoader {
-    private final ItemService itemService;
+    private final ItemsService itemService;
 
     public void loadInitialItemsData() {
         try {

@@ -1,4 +1,4 @@
-package dev.chunghyun.shop.domain.item;
+package dev.chunghyun.shop.domain.items;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -6,13 +6,13 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 import java.util.Optional;
 
-public interface ItemRepository extends JpaRepository<Item, Long> {
+public interface ItemsRepository extends JpaRepository<Items, Long> {
     @Query("SELECT i FROM Items i JOIN FETCH i.itemPricesList WHERE i.itemNumber = :itemNumber")
-    Optional<Item> findByItemNumberWithItemPrices(@Param("itemNumber") int itemNumber);
+    Optional<Items> findByItemNumberWithItemPrices(@Param("itemNumber") int itemNumber);
 
     @Query("SELECT i FROM Items i JOIN FETCH i.itemStocks WHERE i.itemNumber = :itemNumber")
-    Optional<Item> findByItemNumberWithItemStocks(@Param("itemNumber") int itemNumber);
+    Optional<Items> findByItemNumberWithItemStocks(@Param("itemNumber") int itemNumber);
 
     @Query("SELECT i FROM Items i JOIN FETCH i.itemPricesList")
-    List<Item> findAllWithItemPrices();
+    List<Items> findAllWithItemPrices();
 }
