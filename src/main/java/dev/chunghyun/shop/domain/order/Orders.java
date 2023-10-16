@@ -1,4 +1,4 @@
-package dev.chunghyun.shop.domain.orders;
+package dev.chunghyun.shop.domain.order;
 
 import dev.chunghyun.shop.domain.delivery.Delivery;
 import dev.chunghyun.shop.domain.member.Member;

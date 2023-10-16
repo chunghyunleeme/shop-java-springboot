@@ -1,4 +1,4 @@
-package dev.chunghyun.shop.domain.orders.dto;
+package dev.chunghyun.shop.domain.order.dto;
 
 import lombok.Builder;
 import lombok.Getter;

@@ -1,4 +1,4 @@
-package dev.chunghyun.shop.domain.orders;
+package dev.chunghyun.shop.domain.order;
 
 import jakarta.persistence.*;
 import lombok.Builder;

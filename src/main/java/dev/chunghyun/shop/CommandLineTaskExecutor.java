@@ -1,10 +1,10 @@
 package dev.chunghyun.shop;
 
 import dev.chunghyun.shop.domain.item.ItemService;
-import dev.chunghyun.shop.domain.orders.OrderItem;
-import dev.chunghyun.shop.domain.orders.OrdersService;
-import dev.chunghyun.shop.domain.orders.dto.OrdersRequestListDto;
-import dev.chunghyun.shop.domain.orders.dto.OrdersResponseDto;
+import dev.chunghyun.shop.domain.order.OrderItem;
+import dev.chunghyun.shop.domain.order.OrdersService;
+import dev.chunghyun.shop.domain.order.dto.OrdersRequestListDto;
+import dev.chunghyun.shop.domain.order.dto.OrdersResponseDto;
 import dev.chunghyun.shop.loader.ItemsDataLoader;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;

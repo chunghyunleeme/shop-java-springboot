@@ -2,7 +2,6 @@ package dev.chunghyun.shop.domain.delivery;
 
 import dev.chunghyun.shop.domain.BaseTimeEntity;
 import dev.chunghyun.shop.domain.address.Address;
-import dev.chunghyun.shop.domain.orders.Orders;
 import jakarta.persistence.*;
 
 @Entity

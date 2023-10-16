@@ -1,11 +1,11 @@
-package dev.chunghyun.shop.domain.orders;
+package dev.chunghyun.shop.domain.order;
 
 import dev.chunghyun.shop.domain.item.Item;
 import dev.chunghyun.shop.domain.item.ItemService;
 import dev.chunghyun.shop.domain.item.dto.ItemsResponseDto;
-import dev.chunghyun.shop.domain.orders.dto.OrdersRequestDto;
-import dev.chunghyun.shop.domain.orders.dto.OrdersRequestListDto;
-import dev.chunghyun.shop.domain.orders.dto.OrdersResponseDto;
+import dev.chunghyun.shop.domain.order.dto.OrdersRequestDto;
+import dev.chunghyun.shop.domain.order.dto.OrdersRequestListDto;
+import dev.chunghyun.shop.domain.order.dto.OrdersResponseDto;
 import dev.chunghyun.shop.exception.SoldOutException;
 import dev.chunghyun.shop.loader.ItemsDataLoader;
 import org.springframework.beans.factory.annotation.Autowired;

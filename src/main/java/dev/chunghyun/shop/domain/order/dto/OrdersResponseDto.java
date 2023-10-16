@@ -1,7 +1,7 @@
-package dev.chunghyun.shop.domain.orders.dto;
+package dev.chunghyun.shop.domain.order.dto;
 
-import dev.chunghyun.shop.domain.orders.OrderItem;
-import dev.chunghyun.shop.domain.orders.Orders;
+import dev.chunghyun.shop.domain.order.OrderItem;
+import dev.chunghyun.shop.domain.order.Orders;
 import lombok.Builder;
 import lombok.Getter;
 

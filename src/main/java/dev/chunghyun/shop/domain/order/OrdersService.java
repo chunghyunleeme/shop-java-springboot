@@ -1,4 +1,4 @@
-package dev.chunghyun.shop.domain.orders;
+package dev.chunghyun.shop.domain.order;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import dev.chunghyun.shop.domain.item.ItemService;
-import dev.chunghyun.shop.domain.orders.dto.OrdersResponseDto;
+import dev.chunghyun.shop.domain.order.dto.OrdersResponseDto;
 
 @RequiredArgsConstructor
 @Service
