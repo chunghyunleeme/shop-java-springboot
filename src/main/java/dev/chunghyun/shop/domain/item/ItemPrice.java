@@ -1,4 +1,4 @@
-package dev.chunghyun.shop.domain.items;
+package dev.chunghyun.shop.domain.item;
 
 import jakarta.persistence.*;
 import dev.chunghyun.shop.domain.BaseTimeEntity;
@@ -8,21 +8,21 @@ import static jakarta.persistence.FetchType.*;
 @Getter
 @NoArgsConstructor
 @Entity
-public class ItemPrices extends BaseTimeEntity {
+public class ItemPrice extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private int price;
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "ITEMS_ID")
-    private Items items;
+    private Item item;
 
     @Builder
-    public ItemPrices(int price) {
+    public ItemPrice(int price) {
         this.price = price;
     }
 
-    public void setItems(Items items) {
-        this.items = items;
+    public void setItem(Item item) {
+        this.item = item;
     }
 }

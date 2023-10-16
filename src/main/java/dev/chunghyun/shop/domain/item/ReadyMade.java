@@ -1,13 +1,12 @@
-package dev.chunghyun.shop.domain.items;
+package dev.chunghyun.shop.domain.item;
 
-import dev.chunghyun.shop.domain.BaseTimeEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 
 @Entity
 @DiscriminatorValue("READY_MADE")
-public class ReadyMade extends Items {
+public class ReadyMade extends Item {
     @Column
     private int stockQuantity;
 }

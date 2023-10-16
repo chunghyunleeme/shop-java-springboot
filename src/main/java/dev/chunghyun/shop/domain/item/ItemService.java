@@ -1,19 +1,13 @@
-package dev.chunghyun.shop.domain.items;
+package dev.chunghyun.shop.domain.item;
 
-import dev.chunghyun.shop.domain.items.dto.ItemsResponseDto;
-import dev.chunghyun.shop.domain.items.dto.ItemsSaveRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
-public class ItemsService {
-    private final ItemsRepository itemRepository;
-    private final ItemStocksRepository itemStocksRepository;
+public class ItemService {
+    private final ItemRepository itemRepository;
+    private final ItemStockRepository itemStockRepository;
 
 //    @Transactional
 //    public Long saveItems(ItemsSaveRequestDto requestDto) {
@@ -29,8 +23,8 @@ public class ItemsService {
 //        return itemRepository.save(items).getId();
 //    }
 
-    public ItemStocks  getItemStocksForOrder(Long id) {
-        return itemStocksRepository.findByIdForUpdate(id)
+    public ItemStock getItemStocksForOrder(Long id) {
+        return itemStockRepository.findByIdForUpdate(id)
                 .orElseThrow(() -> new IllegalArgumentException("Item Stock not found"));
     }
 
@@ -41,12 +35,12 @@ public class ItemsService {
 //                .collect(Collectors.toList());
 //    }
 
-    public Items  getItemByItemNumber(int itemNumber) {
+    public Item getItemByItemNumber(int itemNumber) {
         return itemRepository.findByItemNumberWithItemPrices(itemNumber)
                 .orElseThrow(() -> new IllegalArgumentException("Item not found"));
     }
 
-    public Items getItemByItemNumberWithItemStocks(int itemNumber) {
+    public Item getItemByItemNumberWithItemStocks(int itemNumber) {
         return itemRepository.findByItemNumberWithItemStocks(itemNumber)
                 .orElseThrow(() -> new IllegalArgumentException("item not found"));
     }

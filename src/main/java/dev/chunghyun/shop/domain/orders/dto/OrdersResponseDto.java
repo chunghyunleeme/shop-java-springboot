@@ -1,6 +1,6 @@
 package dev.chunghyun.shop.domain.orders.dto;
 
-import dev.chunghyun.shop.domain.orders.OrderItems;
+import dev.chunghyun.shop.domain.orders.OrderItem;
 import dev.chunghyun.shop.domain.orders.Orders;
 import lombok.Builder;
 import lombok.Getter;
@@ -12,7 +12,7 @@ import java.util.List;
 public class OrdersResponseDto {
     private final Long id;
     private final Orders.OrderStatus status;
-    private final List<OrderItems> orderItemsList = new ArrayList<>();
+    private final List<OrderItem> orderItemsList = new ArrayList<>();
     private final int shippingFee;
     private final int orderAmount;
     private final int paymentAmount;

@@ -1,4 +1,4 @@
-package dev.chunghyun.shop.domain;
+package dev.chunghyun.shop.domain.address;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;

@@ -21,7 +21,7 @@ public class Orders extends BaseTimeEntity {
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
     @OneToMany(mappedBy = "orders", cascade = CascadeType.ALL)
-    private final List<OrderItems> orderItemsList = new ArrayList<>();
+    private final List<OrderItem> orderItemsList = new ArrayList<>();
     private int shippingFee;
     @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, orphanRemoval = true)
     @JoinColumn(name = "DELIVERY_ID")
@@ -29,7 +29,7 @@ public class Orders extends BaseTimeEntity {
 
     public int getOrderAmount() {
         int orderAmount = 0;
-        for (OrderItems orderItem : this.orderItemsList) {
+        for (OrderItem orderItem : this.orderItemsList) {
             orderAmount += orderItem.getOrderItemPrice() * orderItem.getOrderQuantity();
         }
         return orderAmount;
@@ -39,9 +39,9 @@ public class Orders extends BaseTimeEntity {
         return this.getOrderAmount() + this.shippingFee;
     }
 
-    public void addOrderItems(OrderItems orderItems) {
-        orderItemsList.add(orderItems);
-        orderItems.setOrders(this);
+    public void addOrderItems(OrderItem orderItem) {
+        orderItemsList.add(orderItem);
+        orderItem.setOrders(this);
     }
 
     public void setShippingFee() {
@@ -56,10 +56,10 @@ public class Orders extends BaseTimeEntity {
         this.status = status;
     }
 
-    public static Orders createOrder(List<OrderItems> orderItemList) {
+    public static Orders createOrder(List<OrderItem> orderItemList) {
         Orders order = new Orders();
         order.setStatus(OrderStatus.ORDER);
-        for (OrderItems orderItem : orderItemList){
+        for (OrderItem orderItem : orderItemList){
             order.addOrderItems(orderItem);
         }
         order.setShippingFee();
