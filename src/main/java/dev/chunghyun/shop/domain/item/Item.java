@@ -20,7 +20,7 @@ public abstract class Item extends BaseTimeEntity {
     private int itemNumber;
     private String name;
 //    private int stockQuantity;
-    @OneToMany(mappedBy = "items", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
     private final List<ItemPrice> itemPriceList = new ArrayList<>();
     @JoinColumn(name = "ITEM_STOCKS_ID")
     @OneToOne(fetch = LAZY, cascade = CascadeType.ALL)

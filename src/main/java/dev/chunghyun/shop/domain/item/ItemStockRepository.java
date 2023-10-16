@@ -10,6 +10,6 @@ import java.util.Optional;
 
 public interface ItemStockRepository extends JpaRepository<ItemStock, Long> {
     @Lock(LockModeType.PESSIMISTIC_WRITE)
-    @Query("SELECT is FROM ItemStocks is WHERE is.id = :id")
+    @Query("SELECT is FROM ItemStock is WHERE is.id = :id")
     Optional<ItemStock> findByIdForUpdate(@Param("id") Long id);
 }

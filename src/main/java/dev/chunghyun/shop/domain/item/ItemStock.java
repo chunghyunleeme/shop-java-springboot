@@ -14,7 +14,7 @@ public class ItemStock extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private int stockQuantity;
-    @OneToOne(mappedBy = "itemStocks")
+    @OneToOne(mappedBy = "itemStock")
     private Item item;
 
     @Builder
