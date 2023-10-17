@@ -2,7 +2,7 @@ package dev.chunghyun.shop;
 
 import dev.chunghyun.shop.domain.item.ItemService;
 import dev.chunghyun.shop.domain.order.OrderItem;
-import dev.chunghyun.shop.domain.order.OrdersService;
+import dev.chunghyun.shop.domain.order.OrderService;
 import dev.chunghyun.shop.domain.order.dto.OrdersRequestListDto;
 import dev.chunghyun.shop.domain.order.dto.OrdersResponseDto;
 import dev.chunghyun.shop.loader.ItemsDataLoader;
@@ -17,7 +17,7 @@ import java.util.Scanner;
 @Component
 public class CommandLineTaskExecutor implements CommandLineRunner {
     private final ItemService itemService;
-    private final OrdersService orderService;
+    private final OrderService orderService;
 
     @Override
     public void run(String... args) throws Exception {

@@ -23,9 +23,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 import static org.assertj.core.api.Assertions.assertThat;
 @ActiveProfiles("test")
 @SpringBootTest
-public class OrdersServiceIntegrationTest {
+public class OrderServiceIntegrationTest {
     @Autowired
-    OrdersService ordersService;
+    OrderService orderService;
     @Autowired
     ItemService itemService;
 
@@ -56,7 +56,7 @@ public class OrdersServiceIntegrationTest {
                 try {
                     OrdersRequestListDto orderRequestListDto = new OrdersRequestListDto();
                     orderRequestListDto.addOrderRequestDto(OrdersRequestDto.builder().itemNumber(itemNumber).orderQuantity(orderQuantity).build());
-                    ordersService.order(orderRequestListDto);
+                    orderService.order(orderRequestListDto);
                     orderItemsSuccessCount.getAndIncrement();
                 } catch (SoldOutException e) {
                     System.out.println(e.getMessage());
@@ -78,7 +78,7 @@ public class OrdersServiceIntegrationTest {
         assertThat(orderedItem.getStockQuantity()).isEqualTo(0);
         assertThat(orderedItem.getItemStock().getStockQuantity()).isEqualTo(0);
 
-        List<OrdersResponseDto> orderList = ordersService.getAllOrdersList();
+        List<OrdersResponseDto> orderList = orderService.getAllOrdersList();
         assertThat(orderList.size()).isEqualTo(stockQuantity / orderQuantity);
     }
 }

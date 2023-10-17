@@ -8,7 +8,7 @@ import dev.chunghyun.shop.domain.item.ItemStock;
 import dev.chunghyun.shop.domain.item.Item;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class OrdersTest {
+public class OrderTest {
     private Item item1;
     private Item item2;
     private OrderItems orderItems1;
@@ -63,14 +63,14 @@ public class OrdersTest {
                 .orderQuantity(1)
                 .orderItemPrice(1000)
                 .build();
-        Orders orders = new Orders();
+        Order order = new Order();
 
         //When
-        orders.addOrderItems(orderItems1);
-        orders.addOrderItems(orderItems2);
+        order.addOrderItems(orderItems1);
+        order.addOrderItems(orderItems2);
 
         //Then
-        assertThat(orders.getOrderItemsList().size()).isEqualTo(2);
+        assertThat(order.getOrderItemsList().size()).isEqualTo(2);
     }
 
     @Test
@@ -92,12 +92,12 @@ public class OrdersTest {
                 .orderQuantity(orderQuantity2)
                 .orderItemPrice(orderItemPrice2)
                 .build();
-        Orders orders = new Orders();
-        orders.addOrderItems(orderItems1);
-        orders.addOrderItems(orderItems2);
+        Order order = new Order();
+        order.addOrderItems(orderItems1);
+        order.addOrderItems(orderItems2);
 
         //When
-        int orderAmount = orders.getOrderAmount();
+        int orderAmount = order.getOrderAmount();
 
         //Then
         int expectedOrderAmount = orderQuantity1 * orderItemPrice1 + orderQuantity2 * orderItemPrice2;
@@ -110,16 +110,16 @@ public class OrdersTest {
         orderItems1 = OrderItems.builder()
                 .items(item1)
                 .orderQuantity(1)
-                .orderItemPrice(Orders.FREE_SHIPPING_AMOUNT / 2)
+                .orderItemPrice(Order.FREE_SHIPPING_AMOUNT / 2)
                 .build();
-        Orders orders = new Orders();
-        orders.addOrderItems(orderItems1);
+        Order order = new Order();
+        order.addOrderItems(orderItems1);
 
         //When
-        orders.setShippingFee();
+        order.setShippingFee();
 
         //Then
-        assertThat(orders.getShippingFee()).isEqualTo(Orders.SHIPPING_FEE);
+        assertThat(order.getShippingFee()).isEqualTo(Order.SHIPPING_FEE);
     }
 
 
@@ -129,36 +129,36 @@ public class OrdersTest {
         orderItems1 = OrderItems.builder()
                 .items(item1)
                 .orderQuantity(2)
-                .orderItemPrice(Orders.FREE_SHIPPING_AMOUNT)
+                .orderItemPrice(Order.FREE_SHIPPING_AMOUNT)
                 .build();
-        Orders orders = new Orders();
-        orders.addOrderItems(orderItems1);
+        Order order = new Order();
+        order.addOrderItems(orderItems1);
 
         //When
-        orders.setShippingFee();
+        order.setShippingFee();
 
         //Then
-        assertThat(orders.getShippingFee()).isEqualTo(0);
+        assertThat(order.getShippingFee()).isEqualTo(0);
     }
 
     @Test
     public void 주문_총액_계산_테스트() {
         //Given
-        int orderItemPrice = Orders.FREE_SHIPPING_AMOUNT / 2;
+        int orderItemPrice = Order.FREE_SHIPPING_AMOUNT / 2;
         orderItems1 = OrderItems.builder()
                 .items(item1)
                 .orderQuantity(1)
                 .orderItemPrice(orderItemPrice)
                 .build();
-        Orders orders = new Orders();
-        orders.addOrderItems(orderItems1);
-        orders.setShippingFee();
+        Order order = new Order();
+        order.addOrderItems(orderItems1);
+        order.setShippingFee();
 
         //When
-        int paymentAmount = orders.getPaymentAmount();
+        int paymentAmount = order.getPaymentAmount();
 
         //Then
-        int expectedPaymentAmount = orderItemPrice + Orders.SHIPPING_FEE;
+        int expectedPaymentAmount = orderItemPrice + Order.SHIPPING_FEE;
         assertThat(paymentAmount).isEqualTo(expectedPaymentAmount);
     }
 
@@ -170,12 +170,12 @@ public class OrdersTest {
         orderItemsList.add(orderItems2);
 
         //When
-        Orders orders = Orders.createOrder(orderItemsList);
+        Order order = Order.createOrder(orderItemsList);
 
         //Then
-        assertThat(orders.getStatus()).isEqualTo(Orders.OrderStatus.ORDER);
-        assertThat(orders.getOrderItemsList().size()).isEqualTo(2);
-        assertThat(orders.getShippingFee()).isEqualTo(Orders.SHIPPING_FEE);
+        assertThat(order.getStatus()).isEqualTo(Order.OrderStatus.ORDER);
+        assertThat(order.getOrderItemsList().size()).isEqualTo(2);
+        assertThat(order.getShippingFee()).isEqualTo(Order.SHIPPING_FEE);
     }
 
     @Test
@@ -197,14 +197,14 @@ public class OrdersTest {
         orderItemsList.add(orderItems1);
         orderItemsList.add(orderItems2);
 
-        Orders orders = Orders.createOrder(orderItemsList);
+        Order order = Order.createOrder(orderItemsList);
 
         //When
-        orders.cancel();
+        order.cancel();
 
         //Then
         assertThat(item1.getStockQuantity()).isEqualTo(stockQuantity1 + orderItems1.getOrderQuantity());
         assertThat(item2.getStockQuantity()).isEqualTo(stockQuantity2 + orderItems2.getOrderQuantity());
-        assertThat(orders.getStatus()).isEqualTo(Orders.OrderStatus.CANCEL);
+        assertThat(order.getStatus()).isEqualTo(Order.OrderStatus.CANCEL);
     }
 }

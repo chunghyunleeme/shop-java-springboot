@@ -11,8 +11,8 @@ import dev.chunghyun.shop.domain.order.dto.OrdersResponseDto;
 
 @RequiredArgsConstructor
 @Service
-public class OrdersService {
-    private final OrdersRepository orderRepository;
+public class OrderService {
+    private final OrderRepository orderRepository;
     private final ItemService itemService;
 
 //    @Transactional
@@ -42,7 +42,7 @@ public class OrdersService {
     }
 
     public OrdersResponseDto getLastOrders() {
-        Orders latestOrder = orderRepository.findOrdersDesc().get(0);
+        Order latestOrder = orderRepository.findOrdersDesc().get(0);
         return new OrdersResponseDto(latestOrder);
     }
 }

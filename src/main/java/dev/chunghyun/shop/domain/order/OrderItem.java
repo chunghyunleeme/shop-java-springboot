@@ -18,7 +18,7 @@ public class OrderItem extends BaseTimeEntity {
     private Long id;
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "ORDERS_ID")
-    private Orders orders;
+    private Order order;
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "ITEMS_ID")
     private Item item;
@@ -32,8 +32,8 @@ public class OrderItem extends BaseTimeEntity {
         this.orderQuantity = orderQuantity;
     }
 
-    public void setOrders(Orders orders) {
-        this.orders = orders;
+    public void setOrder(Order order) {
+        this.order = order;
     }
 
     public static OrderItem createOrderItem(Item item, int orderQuantity) {

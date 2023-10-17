@@ -10,8 +10,9 @@ import dev.chunghyun.shop.domain.BaseTimeEntity;
 import static jakarta.persistence.FetchType.*;
 
 @Getter
+@Table(name = "orders")
 @Entity
-public class Orders extends BaseTimeEntity {
+public class Order extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -20,8 +21,8 @@ public class Orders extends BaseTimeEntity {
     private Member member;
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
-    @OneToMany(mappedBy = "orders", cascade = CascadeType.ALL)
-    private final List<OrderItem> orderItemsList = new ArrayList<>();
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    private final List<OrderItem> orderItemList = new ArrayList<>();
     private int shippingFee;
     @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, orphanRemoval = true)
     @JoinColumn(name = "DELIVERY_ID")
@@ -29,7 +30,7 @@ public class Orders extends BaseTimeEntity {
 
     public int getOrderAmount() {
         int orderAmount = 0;
-        for (OrderItem orderItem : this.orderItemsList) {
+        for (OrderItem orderItem : this.orderItemList) {
             orderAmount += orderItem.getOrderItemPrice() * orderItem.getOrderQuantity();
         }
         return orderAmount;
@@ -40,8 +41,8 @@ public class Orders extends BaseTimeEntity {
     }
 
     public void addOrderItems(OrderItem orderItem) {
-        orderItemsList.add(orderItem);
-        orderItem.setOrders(this);
+        orderItemList.add(orderItem);
+        orderItem.setOrder(this);
     }
 
     public void setShippingFee() {
@@ -56,8 +57,8 @@ public class Orders extends BaseTimeEntity {
         this.status = status;
     }
 
-    public static Orders createOrder(List<OrderItem> orderItemList) {
-        Orders order = new Orders();
+    public static Order createOrder(List<OrderItem> orderItemList) {
+        Order order = new Order();
         order.setStatus(OrderStatus.ORDER);
         for (OrderItem orderItem : orderItemList){
             order.addOrderItems(orderItem);
