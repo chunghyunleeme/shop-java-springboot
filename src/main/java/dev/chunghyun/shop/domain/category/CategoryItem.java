@@ -9,8 +9,10 @@ import static jakarta.persistence.FetchType.*;
 public class CategoryItem extends BaseTimeEntity{
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
+
     @ManyToOne(fetch = LAZY)
     private Category category;
+
     @ManyToOne(fetch = LAZY)
     private Item item;
 }

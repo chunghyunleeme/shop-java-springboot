@@ -9,11 +9,14 @@ import static jakarta.persistence.FetchType.*;
 public class Category extends BaseTimeEntity {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(name = "name")
     private String name;
+
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "PARENT_ID")
     private Category parent;
+
     @OneToMany(mappedBy = "parent")
     private List<Category> childs;
 }

@@ -16,16 +16,21 @@ public class Order extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @ManyToOne(fetch = LAZY)
-    @JoinColumn(name = "MEMBER_ID")
+    @JoinColumn(name = "member_id")
     private Member member;
+
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
+
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private final List<OrderItem> orderItemList = new ArrayList<>();
+
     private int shippingFee;
-    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, orphanRemoval = true)
-    @JoinColumn(name = "DELIVERY_ID")
+
+    @OneToOne(cascade = {CascadeType.ALL}, fetch = LAZY)
+    @JoinColumn(name = "delivery_id")
     private Delivery delivery;
 
     public int getOrderAmount() {

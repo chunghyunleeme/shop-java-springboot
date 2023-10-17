@@ -14,7 +14,7 @@ public class Member extends BaseTimeEntity{
     private Long memberId;
     @Column(name = "name")
     private String name;
-    @JoinColumn(name = "MEMBER_ID")
+    @JoinColumn(name = "member_id")
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<AddressEntity> addressHistory = new ArrayList<>();
 }

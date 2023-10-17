@@ -8,6 +8,7 @@ import jakarta.persistence.*;
 public class Delivery extends BaseTimeEntity {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(name = "status")
     private String status;
 

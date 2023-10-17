@@ -16,13 +16,17 @@ public class OrderItem extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "ORDERS_ID")
     private Order order;
+
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "ITEMS_ID")
     private Item item;
+
     private int orderItemPrice;// 상품 가격과 독립된 데이터로 존재 왜냐면, 상품가격이 변했다고 전에 주문한 상품 금액이 바뀌는건 아님
+
     private int orderQuantity;
 
     @Builder

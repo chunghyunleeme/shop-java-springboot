@@ -17,11 +17,16 @@ public abstract class Item extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private int itemNumber;
+
     private String name;
+
 //    private int stockQuantity;
+
     @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
     private final List<ItemPrice> itemPriceList = new ArrayList<>();
+
     @JoinColumn(name = "ITEM_STOCKS_ID")
     @OneToOne(fetch = LAZY, cascade = CascadeType.ALL)
     private ItemStock itemStock;

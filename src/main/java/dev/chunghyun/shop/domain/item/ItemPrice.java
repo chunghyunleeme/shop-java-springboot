@@ -12,7 +12,9 @@ public class ItemPrice extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private int price;
+
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "ITEMS_ID")
     private Item item;
