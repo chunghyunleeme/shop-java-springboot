@@ -4,6 +4,8 @@ import dev.chunghyun.shop.domain.delivery.Delivery;
 import dev.chunghyun.shop.domain.member.Member;
 import jakarta.persistence.*;
 import lombok.Getter;
+
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import dev.chunghyun.shop.domain.BaseTimeEntity;
@@ -29,9 +31,11 @@ public class Order extends BaseTimeEntity {
 
     private int shippingFee;
 
-    @OneToOne(cascade = {CascadeType.ALL}, fetch = LAZY)
+    @OneToOne(cascade = CascadeType.ALL, fetch = LAZY)
     @JoinColumn(name = "delivery_id")
     private Delivery delivery;
+
+    private LocalDateTime orderDate; // 주문 시간
 
     public int getOrderAmount() {
         int orderAmount = 0;
@@ -43,6 +47,10 @@ public class Order extends BaseTimeEntity {
 
     public int getPaymentAmount() {
         return this.getOrderAmount() + this.shippingFee;
+    }
+
+    public void setMember(Member member){
+        this.member = member;
     }
 
     public void addOrderItems(OrderItem orderItem) {
