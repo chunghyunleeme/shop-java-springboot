@@ -3,14 +3,18 @@ package dev.chunghyun.shop.domain.order;
 import dev.chunghyun.shop.domain.delivery.Delivery;
 import dev.chunghyun.shop.domain.member.Member;
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import dev.chunghyun.shop.domain.BaseTimeEntity;
+import lombok.NoArgsConstructor;
+
 import static jakarta.persistence.FetchType.*;
 
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Table(name = "orders")
 @Entity
@@ -37,28 +41,52 @@ public class Order extends BaseTimeEntity {
 
     private LocalDateTime orderDate; // 주문 시간
 
-    public int getOrderAmount() {
-        int orderAmount = 0;
-        for (OrderItem orderItem : this.orderItemList) {
-            orderAmount += orderItem.getOrderItemPrice() * orderItem.getOrderQuantity();
+    public static Order createOrder(Member member, Delivery delivery, OrderItem... orderItemList) {
+        Order order = new Order();
+        order.setMember(member);
+        order.setDelivery(delivery);
+        order.setStatus(OrderStatus.ORDER);
+        for (OrderItem orderItem : orderItemList){
+            order.addOrderItems(orderItem);
         }
-        return orderAmount;
+        order.setShippingFee();
+        order.setOrderDate(LocalDateTime.now());
+        return order;
+    }
+
+    public void cancel() {
+        this.setStatus(OrderStatus.CANCEL);
+        for (OrderItem orderItem : orderItemList) {
+            orderItem.cancel();
+        }
+    }
+
+    public int getOrderAmount() {
+        return orderItemList.stream().mapToInt(OrderItem::getTotalPrice).sum();
     }
 
     public int getPaymentAmount() {
         return this.getOrderAmount() + this.shippingFee;
     }
 
-    public void setMember(Member member){
+    private void setMember(Member member) {
         this.member = member;
     }
 
-    public void addOrderItems(OrderItem orderItem) {
+    private void setDelivery(Delivery delivery) {
+        this.delivery = delivery;
+    }
+
+    private void setOrderDate(LocalDateTime localDateTime) {
+        this.orderDate = localDateTime;
+    }
+
+    private void addOrderItems(OrderItem orderItem) {
         orderItemList.add(orderItem);
         orderItem.setOrder(this);
     }
 
-    public void setShippingFee() {
+    private void setShippingFee() {
         this.shippingFee = SHIPPING_FEE;
         boolean isOverFreeShippingAmount = FREE_SHIPPING_AMOUNT < getOrderAmount();
         if(isOverFreeShippingAmount) {
@@ -66,26 +94,9 @@ public class Order extends BaseTimeEntity {
         }
     }
 
-    public void setStatus(OrderStatus status) {
+    private void setStatus(OrderStatus status) {
         this.status = status;
     }
-
-    public static Order createOrder(List<OrderItem> orderItemList) {
-        Order order = new Order();
-        order.setStatus(OrderStatus.ORDER);
-        for (OrderItem orderItem : orderItemList){
-            order.addOrderItems(orderItem);
-        }
-        order.setShippingFee();
-        return order;
-    }
-
-//    public void cancel() {
-//        this.setStatus(OrderStatus.CANCEL);
-//        for (OrderItems orderItems : orderItemsList) {
-//            orderItems.cancel();
-//        }
-//    }
 
     public enum OrderStatus {
         ORDER,

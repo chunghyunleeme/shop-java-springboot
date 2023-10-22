@@ -1,5 +1,6 @@
 package dev.chunghyun.shop.domain.order;
 
+import dev.chunghyun.shop.domain.item.ReadyMade;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
@@ -48,9 +49,11 @@ public class OrderItem extends BaseTimeEntity {
                 .build();
     }
 
-//    public void cancel() {
-//        this.items.addStockQuantity(orderQuantity);
-//    }
+    public void cancel() {
+        if(this.item instanceof ReadyMade) {
+            ((ReadyMade) this.item).addStock(orderQuantity);
+        }
+    }
 
     public int getTotalPrice() {
         return this.getOrderItemPrice() * this.getOrderQuantity();
