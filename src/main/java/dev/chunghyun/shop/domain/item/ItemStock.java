@@ -1,5 +1,6 @@
 package dev.chunghyun.shop.domain.item;
 
+import dev.chunghyun.shop.exception.SoldOutException;
 import jakarta.persistence.*;
 import dev.chunghyun.shop.domain.BaseTimeEntity;
 import lombok.Builder;
@@ -17,23 +18,23 @@ public class ItemStock extends BaseTimeEntity {
     private int stockQuantity;
 
     @OneToOne(mappedBy = "itemStock")
-    private Item item;
+    private ReadyMade item;
 
     @Builder
     public ItemStock(int stockQuantity) {
         this.stockQuantity = stockQuantity;
     }
 
-    public void setItem(Item item) {
+    public void setItem(ReadyMade item) {
         this.item = item;
     }
 
-//    public void removeStock(int orderQuantity) {
-//        int restStock = this.stockQuantity - orderQuantity;
-//        if(restStock < 0) {
-//            throw new SoldOutException();
-//        }
-//        this.stockQuantity = restStock;
-//        this.items.setStockQuantity(restStock);
-//    }
+    public void removeStock(int orderQuantity) {
+        int restStock = this.stockQuantity - orderQuantity;
+        if(restStock < 0) {
+            throw new SoldOutException();
+        }
+        this.stockQuantity = restStock;
+        this.item.setStockQuantity(restStock);
+    }
 }

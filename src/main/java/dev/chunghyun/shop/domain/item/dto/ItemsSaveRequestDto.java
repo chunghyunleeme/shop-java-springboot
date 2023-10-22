@@ -3,27 +3,15 @@ package dev.chunghyun.shop.domain.item.dto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
 @Getter
-@NoArgsConstructor
-public class ItemsSaveRequestDto {
+public abstract class ItemsSaveRequestDto {
     private int itemNumber;
     private String name;
     private int price;
-    private int stockQuantity;
 
-    @Builder
-    public ItemsSaveRequestDto(int itemNumber, String name, int price, int stockQuantity) {
+    public ItemsSaveRequestDto(int itemNumber, String name, int price) {
         this.itemNumber = itemNumber;
         this.name = name;
         this.price = price;
-        this.stockQuantity = stockQuantity;
     }
-
-//    public Items toEntity() {
-//        return Items.builder()
-//                .itemNumber(itemNumber)
-//                .name(name)
-//                .build();
-//    }
 }

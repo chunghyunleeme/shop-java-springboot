@@ -1,27 +1,53 @@
 package dev.chunghyun.shop.domain.item;
 
+import dev.chunghyun.shop.domain.item.dto.CustomMadeSaveRequestDto;
+import dev.chunghyun.shop.domain.item.dto.ItemsSaveRequestDto;
+import dev.chunghyun.shop.domain.item.dto.ReadyMadeSaveRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
 @Service
 public class ItemService {
     private final ItemRepository itemRepository;
     private final ItemStockRepository itemStockRepository;
 
-//    @Transactional
-//    public Long saveItems(ItemsSaveRequestDto requestDto) {
-//        Items items = requestDto.toEntity();
-//        ItemPrices itemPrice = ItemPrices.builder()
-//                .price(requestDto.getPrice())
-//                .build();
-//        items.addNewItemPrices(itemPrice);
-//        ItemStocks itemStocks = ItemStocks.builder()
-//                .stockQuantity(requestDto.getStockQuantity())
-//                .build();
-//        items.setItemStocks(itemStocks);
-//        return itemRepository.save(items).getId();
-//    }
+    /**
+     * 기성품 저장
+     * @param requestDto
+     * @return
+     */
+    @Transactional
+    public Long saveItem(ReadyMadeSaveRequestDto requestDto) {
+        ReadyMade item = ReadyMade.builder()
+                .itemNumber(requestDto.getItemNumber())
+                .name(requestDto.getName())
+                .price(requestDto.getPrice())
+                .stockQuantity(requestDto.getStockQuantity())
+                .build();
+        itemRepository.save(item);
+        return item.getId();
+    }
+
+    /**
+     * 수제 상품 저장
+     * @param requestDto
+     * @return
+     */
+    @Transactional
+    public Long saveItem(CustomMadeSaveRequestDto requestDto) {
+        CustomMade item = CustomMade.builder()
+                .itemNumber(requestDto.getItemNumber())
+                .name(requestDto.getName())
+                .price(requestDto.getPrice())
+                .isOrderable(requestDto.isOrderable())
+                .madePeriod(requestDto.getMadePeriod())
+                .build();
+        itemRepository.save(item);
+        return item.getId();
+    }
 
     public ItemStock getItemStocksForOrder(Long id) {
         return itemStockRepository.findByIdForUpdate(id)

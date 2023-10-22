@@ -16,27 +16,25 @@ import static jakarta.persistence.FetchType.*;
 public abstract class Item extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "item_id")
     private Long id;
 
     private int itemNumber;
 
     private String name;
 
-//    private int stockQuantity;
+    private int price;
 
     @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
     private final List<ItemPrice> itemPriceList = new ArrayList<>();
 
-    @JoinColumn(name = "ITEM_STOCKS_ID")
-    @OneToOne(fetch = LAZY, cascade = CascadeType.ALL)
-    private ItemStock itemStock;
+    protected Item(int itemNumber, String name, int price){
+        this.itemNumber = itemNumber;
+        this.name = name;
+        this.price = price;
+    }
 
-//    @Builder
-//    public Items(int itemNumber, String name) {
-//        this.itemNumber = itemNumber;
-//        this.name = name;
-//        this.name = name;
-//    }
+    public abstract boolean isOnSale();
 
     public int getItemPrice() {
         if(this.itemPriceList.size() == 0) {
@@ -49,19 +47,4 @@ public abstract class Item extends BaseTimeEntity {
         this.itemPriceList.add(itemPrice);
         itemPrice.setItem(this);
     }
-
-//    public void addStockQuantity(int quantity) {
-//        this.stockQuantity += quantity;
-//    }
-//
-//    public void setStockQuantity(int stockQuantity) {
-//        this.stockQuantity = stockQuantity;
-//    }
-
-//    public void setItemStocks(ItemStocks itemStocks) {
-//        this.setStockQuantity(itemStocks.getStockQuantity());
-//
-//        this.itemStocks = itemStocks;
-//        itemStocks.setItems(this);
-//    }
 }
