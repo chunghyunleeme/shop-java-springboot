@@ -6,5 +6,6 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 public class UpdateMemberRequest{
-    private final String name;
+    private String name;
+    private String password;
 }

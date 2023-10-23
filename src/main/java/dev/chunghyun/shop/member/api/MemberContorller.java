@@ -23,24 +23,12 @@ public class MemberContorller {
         return new CreateMemberResponse(id);
     }
 
-    @RequiredArgsConstructor
-    @Data
-    static class CreateMemberResponse {
-        private final Long id;
-    }
-
-    @PatchMapping("/api/v1/members")
-    public UpdateMemberResponse updatemember(@PathVariable("id") Long id, @RequestBody @Valid UpdateMemberRequest request) {
+    @PatchMapping("/api/v1/members/{id}")
+    public UpdateMemberResponse updateMember(@PathVariable("id") Long id,
+                                             @RequestBody @Valid UpdateMemberRequest request) {
         Long memberId = memberService.update(id, request);
         Member member = memberService.getMember(memberId);
         return new UpdateMemberResponse(id, member.getName());
-    }
-
-    @RequiredArgsConstructor
-    @Data
-    static class UpdateMemberResponse {
-        private final Long id;
-        private final String name;
     }
 
     @GetMapping("/api/v1/members")
@@ -51,6 +39,19 @@ public class MemberContorller {
                 .collect(Collectors.toList());
 
         return new Result(memberList);
+    }
+
+    @RequiredArgsConstructor
+    @Data
+    static class CreateMemberResponse {
+        private final Long id;
+    }
+
+    @RequiredArgsConstructor
+    @Data
+    static class UpdateMemberResponse {
+        private final Long id;
+        private final String name;
     }
 
     @RequiredArgsConstructor

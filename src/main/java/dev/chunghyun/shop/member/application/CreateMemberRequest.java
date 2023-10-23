@@ -1,9 +1,11 @@
 package dev.chunghyun.shop.member.application;
 
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
+@Getter
 @RequiredArgsConstructor
 public class CreateMemberRequest {
-    public final String name;
-    public final String password;
+    private final String name;
+    private final String password;
 }

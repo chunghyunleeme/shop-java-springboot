@@ -20,11 +20,11 @@ public class MemberService {
 
     @Transactional
     public Long join(CreateMemberRequest request) {
-        validateDuplicateName(request.name);
+        validateDuplicateName(request.getName());
 
         Member member = Member.builder()
-                .name(request.name)
-                .password(request.password)
+                .name(request.getName())
+                .password(request.getPassword())
                 .build();
 
         memberRepository.save(member);
@@ -33,6 +33,7 @@ public class MemberService {
 
     @Transactional
     public Long update(Long id, UpdateMemberRequest request) {
+        System.out.println("request::" + request.toString());
         Member member = getMember(id);
         member.update(request.getName());
         return id;
@@ -43,19 +44,17 @@ public class MemberService {
     }
 
     public Member getMember(Long id) {
-        Optional<Member> member = memberRepository.findById(id);
+        Optional<Member> member = memberRepository.findOneById(id);
         if(!member.isPresent()) throw new RuntimeException("존재하지 않는 유저입니다.");
         return member.get();
     }
 
     private Optional<Member> getMemberByName(String name) {
         return memberRepository.findByName(name);
-
     }
 
     private void validateDuplicateName(String name) {
         Optional<Member> member = getMemberByName(name);
-        System.out.println("member" + member);
         boolean alreadyExistName = member.isPresent();
         if(alreadyExistName) throw new DuplicateMemberException();
     }
