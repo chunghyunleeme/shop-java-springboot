@@ -6,7 +6,7 @@ import java.util.List;
 import lombok.*;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
-import dev.chunghyun.shop.domain.item.ItemService;
+import dev.chunghyun.shop.item.ItemService;
 
 @RequiredArgsConstructor
 public class ItemsDataLoader {

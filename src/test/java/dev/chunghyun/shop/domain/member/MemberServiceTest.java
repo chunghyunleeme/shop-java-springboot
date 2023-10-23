@@ -1,9 +1,11 @@
 package dev.chunghyun.shop.domain.member;
 
-import dev.chunghyun.shop.domain.member.dto.MemberSaveRequestDto;
+import dev.chunghyun.shop.member.Member;
+import dev.chunghyun.shop.member.MemberRepository;
+import dev.chunghyun.shop.member.MemberService;
+import dev.chunghyun.shop.member.dto.MemberSaveRequestDto;
 import dev.chunghyun.shop.exception.DuplicateMemberException;
 import jakarta.persistence.EntityManager;
-import lombok.RequiredArgsConstructor;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
