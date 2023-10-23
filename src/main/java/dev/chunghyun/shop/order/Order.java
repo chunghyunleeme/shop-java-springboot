@@ -1,7 +1,7 @@
 package dev.chunghyun.shop.order;
 
 import dev.chunghyun.shop.delivery.Delivery;
-import dev.chunghyun.shop.member.Member;
+import dev.chunghyun.shop.member.domain.Member;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;

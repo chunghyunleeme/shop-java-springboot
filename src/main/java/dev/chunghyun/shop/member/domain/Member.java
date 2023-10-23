@@ -1,4 +1,4 @@
-package dev.chunghyun.shop.member;
+package dev.chunghyun.shop.member.domain;
 
 import dev.chunghyun.shop.BaseTimeEntity;
 import dev.chunghyun.shop.address.AddressEntity;
@@ -34,5 +34,9 @@ public class Member extends BaseTimeEntity{
     public Member(String name, String password){
         this.name = name;
         this.password = password;
+    }
+
+    public void update(String name){
+        this.name = name;
     }
 }

@@ -1,9 +1,9 @@
 package dev.chunghyun.shop.domain.member;
 
-import dev.chunghyun.shop.member.Member;
-import dev.chunghyun.shop.member.MemberRepository;
-import dev.chunghyun.shop.member.MemberService;
-import dev.chunghyun.shop.member.dto.MemberSaveRequestDto;
+import dev.chunghyun.shop.member.application.CreateMemberRequest;
+import dev.chunghyun.shop.member.domain.Member;
+import dev.chunghyun.shop.member.domain.MemberRepository;
+import dev.chunghyun.shop.member.application.MemberService;
 import dev.chunghyun.shop.exception.DuplicateMemberException;
 import jakarta.persistence.EntityManager;
 import org.junit.runner.RunWith;
@@ -38,7 +38,7 @@ public class MemberServiceTest {
         String memberName = "lee";
         String password = "test";
 
-        MemberSaveRequestDto requestDto = new MemberSaveRequestDto(memberName, password);
+        CreateMemberRequest requestDto = new CreateMemberRequest(memberName, password);
         //when
         Long savedId = memberService.join(requestDto);
 
@@ -53,8 +53,8 @@ public class MemberServiceTest {
         String memberName = "lee";
         String password = "test";
 
-        MemberSaveRequestDto requestDto = new MemberSaveRequestDto(memberName, password);
-        MemberSaveRequestDto requestDto2 = new MemberSaveRequestDto(memberName, password);
+        CreateMemberRequest requestDto = new CreateMemberRequest(memberName, password);
+        CreateMemberRequest requestDto2 = new CreateMemberRequest(memberName, password);
 
         //when
         memberService.join(requestDto);
